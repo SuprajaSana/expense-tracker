@@ -50,22 +50,22 @@ const Login = () => {
               "Content-Type": "application/json",
             },
           }
-        ).then((response) => {
-          setSendingRequest(false);
-          if (response.ok) {
-              return response.json()
-          } else {
-            response.json().then((data) => {
-              let errorMessage = "Authentication Failed!";
-              if (data && data.error && data.error.message) {
-                errorMessage = data.error.message;
-              }
-              alert(errorMessage);
-            });
-          }
-        })
-            .then((data) => {
-            console.log(data.idToken)
+        )
+          .then((response) => {
+            setSendingRequest(false);
+            if (response.ok) {
+              return response.json();
+            } else {
+              response.json().then((data) => {
+                let errorMessage = "Authentication Failed!";
+                if (data && data.error && data.error.message) {
+                  errorMessage = data.error.message;
+                }
+                alert(errorMessage);
+              });
+            }
+          })
+          .then((data) => {
             authCtx.login(data.idToken);
             //authCtx.login(data.idToken);
             history.replace("/welcome");

@@ -1,6 +1,7 @@
 import { Route} from "react-router-dom";
 
 import LogIn from "./pages/LoginPage";
+import Profile from "./pages/ProfilePage";
 import SignUp from "./pages/SignupPage";
 import Welcome from "./pages/WelcomPage";
 
@@ -15,6 +16,9 @@ function App() {
       </Route>
       <Route path='/welcome'>
         <Welcome></Welcome>
+      </Route>
+      <Route path='/completeprofile'>
+        <Profile></Profile>
       </Route>
     </main>
   );
