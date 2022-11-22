@@ -1,0 +1,12 @@
+.action {
+  margin-top: 50px;
+  display: flex;
+  margin-left: 618px;
+}
+.action button {
+  color: white;
+  font-weight: bold;
+  background-color: blue;
+  width: 130px;
+  height: 40px;
+}
