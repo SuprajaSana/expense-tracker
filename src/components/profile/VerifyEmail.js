@@ -1,6 +1,7 @@
 import classes from "./VerifyEmail.module.css";
 import AuthContext from "../../store/auth-context";
 import { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const VerifyEmail = () => {
   const authCtx = useContext(AuthContext);
@@ -8,6 +9,8 @@ const VerifyEmail = () => {
   const [emailVerify, setEmailVerify] = useState(false);
 
   const token = authCtx.token;
+
+  const history = useHistory();
 
   const emailVerifyHandler = () => {
     setEmailVerify(true);
@@ -17,7 +20,7 @@ const VerifyEmail = () => {
       {
         method: "POST",
         body: JSON.stringify({
-          requestType: 'VERIFY_EMAIL',
+          requestType: "VERIFY_EMAIL",
           idToken: token,
         }),
         headers: {
@@ -39,9 +42,19 @@ const VerifyEmail = () => {
     });
   };
 
+  const logoutHandler = () => {
+    authCtx.logout();
+    history.replace("/login");
+  };
+
   return (
-    <div className={classes.action}>
-      <button onClick={emailVerifyHandler}>Verify Email</button>
+    <div>
+      <div className={classes.action}>
+        <button onClick={emailVerifyHandler}>Verify Email</button>
+      </div>
+      <div className={classes.control}>
+        <button onClick={logoutHandler}>LOG OUT</button>
+      </div>
     </div>
   );
 };

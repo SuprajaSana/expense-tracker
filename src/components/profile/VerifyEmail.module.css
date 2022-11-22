@@ -10,3 +10,15 @@
   width: 130px;
   height: 40px;
 }
+.control {
+  margin-top: 30px;
+  display: flex;
+  margin-left: 618px;
+}
+.control button {
+  color: white;
+  font-weight: bold;
+  background-color: blue;
+  width: 130px;
+  height: 40px;
+}
