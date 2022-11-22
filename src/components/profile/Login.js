@@ -1,6 +1,6 @@
 import { useRef, useState, useContext } from "react";
 import AuthContext from "../../store/auth-context";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 
 import classes from "./Login.module.css";
 
@@ -120,7 +120,9 @@ const Login = () => {
         </div>
         <div>
           <span>Don't have an account?</span>
-          <span>SignUp</span>
+          <NavLink className={classes.signup} to="/">
+            SignUp
+          </NavLink>
         </div>
       </form>
     </section>

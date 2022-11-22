@@ -1,9 +1,9 @@
-import { Route} from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import LogIn from "./pages/LoginPage";
 import Profile from "./pages/ProfilePage";
 import SignUp from "./pages/SignupPage";
-import Welcome from "./pages/WelcomPage";
+import Welcome from "./pages/WelcomePage";
 
 function App() {
   return (
@@ -11,13 +11,13 @@ function App() {
       <Route path="/" exact>
         <SignUp></SignUp>
       </Route>
-      <Route path='/login'>
+      <Route path="/login">
         <LogIn></LogIn>
       </Route>
-      <Route path='/welcome'>
+      <Route path="/welcome">
         <Welcome></Welcome>
       </Route>
-      <Route path='/completeprofile'>
+      <Route path="/completeprofile">
         <Profile></Profile>
       </Route>
     </main>

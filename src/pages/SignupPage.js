@@ -1,9 +1,7 @@
-import Signup from "../components/profile/Signup"
+import Signup from "../components/profile/Signup";
 
 const SignUp = () => {
-    return (
-        <Signup></Signup>
-    )
-}
+  return <Signup></Signup>;
+};
 
 export default SignUp;

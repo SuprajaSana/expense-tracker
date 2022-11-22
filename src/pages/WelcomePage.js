@@ -8,7 +8,7 @@ const Welcome = () => {
       <h1 className={classes.heading}>Welcome to Expense Tracker</h1>
       <div className={classes.text}>
         <p>Your Profile is incomplete</p>
-        <Link to='/completeprofile'>Complete Profile</Link>
+        <Link to="/completeprofile">Complete Profile</Link>
       </div>
     </div>
   );

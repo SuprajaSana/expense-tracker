@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 import classes from "./Signup.module.css";
 
@@ -93,7 +94,9 @@ const Signup = () => {
         </div>
         <div>
           <span>Already have an account?</span>
-          <span>Login</span>
+          <NavLink className={classes.login} to="/login">
+            Login
+          </NavLink>
         </div>
       </form>
     </section>
