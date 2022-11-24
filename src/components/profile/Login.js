@@ -116,7 +116,7 @@ const Login = () => {
             className={classes.toggle}
             onClick={switchAuthModeHandler}
           ></button>
-          <span>Forgot Password</span>
+          <NavLink className={classes.password} to='/forgotpassword'>Forgot Password?</NavLink>
         </div>
         <div>
           <span>Don't have an account?</span>

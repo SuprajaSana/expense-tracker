@@ -4,6 +4,7 @@ import LogIn from "./pages/LoginPage";
 import Profile from "./pages/ProfilePage";
 import SignUp from "./pages/SignupPage";
 import Welcome from "./pages/WelcomePage";
+import Password from "./pages/PasswordPage";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
       </Route>
       <Route path="/completeprofile">
         <Profile></Profile>
+      </Route>
+      <Route path="/forgotpassword">
+        <Password></Password>
       </Route>
     </main>
   );
