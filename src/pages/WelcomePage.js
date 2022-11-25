@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 
 import classes from "./WelcomePage.module.css";
 import VerifyEmail from "../components/profile/VerifyEmail";
@@ -12,6 +12,9 @@ const Welcome = () => {
         <Link to="/completeprofile">Complete Profile</Link>
       </div>
       <VerifyEmail></VerifyEmail>
+      <NavLink className={classes.control} to='/addexpense'>
+        <button>Daily Expenses</button>
+      </NavLink>
     </div>
   );
 };

@@ -7,3 +7,17 @@
   text-align: center;
   font-weight: bold;
 }
+.control {
+  margin-top: 30px;
+  display: flex;
+  margin-left: 618px;
+  text-decoration: none;
+}
+.control button {
+  color: white;
+  font-weight: bold;
+  background-color: blue;
+  width: 130px;
+  height: 40px;
+}
+
