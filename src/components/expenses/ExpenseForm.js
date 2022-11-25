@@ -19,7 +19,9 @@ const expenseCtx=useContext(ExpenseContext)
       category: categoryRef.current.value,
       amount: amountRef.current.value,
     };
-    expenseCtx.addExpense(expense);
+    //expenseCtx.addExpense(expense);
+props.onAdd(expense)
+
   }
 
   return (

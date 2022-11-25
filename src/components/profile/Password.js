@@ -18,7 +18,7 @@ const PasswordChange = () => {
     setRequest(true)
 
     fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCUBxdcpTl3dsdRWOLPWwE-R_c1i7gbMsA",
+      "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyAXlNUd-_iFiS1IigjkhHLNYUq2wkiqhec",
       {
         method: "POST",
         body: JSON.stringify({
