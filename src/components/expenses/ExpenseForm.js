@@ -1,4 +1,4 @@
-import { useRef ,useContext} from "react";
+import { useRef, useContext } from "react";
 import ExpenseContext from "../../store/expense-context";
 
 import classes from "./ExpenseForm.module.css";
@@ -8,8 +8,7 @@ const ExpenseForm = (props) => {
   const categoryRef = useRef("");
   const amountRef = useRef("");
 
-const expenseCtx=useContext(ExpenseContext)
-
+  const expenseCtx = useContext(ExpenseContext);
 
   function submitHandler(event) {
     event.preventDefault();
@@ -20,8 +19,7 @@ const expenseCtx=useContext(ExpenseContext)
       amount: amountRef.current.value,
     };
     //expenseCtx.addExpense(expense);
-props.onAdd(expense)
-
+    props.onAdd(expense);
   }
 
   return (

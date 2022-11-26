@@ -1,21 +1,24 @@
 import { useContext, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 
-import classes from './Password.module.css';
+import classes from "./Password.module.css";
 import AuthContext from "../../store/auth-context";
 
 const PasswordChange = () => {
   const emailsentInputRef = useRef("");
 
-  const [sendingRequest,setRequest]=useState(false)
+  const history = useHistory();
+
+  const [sendingRequest, setRequest] = useState(false);
 
   const authCtx = useContext(AuthContext);
 
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const email=emailsentInputRef.current.value
+    const email = emailsentInputRef.current.value;
 
-    setRequest(true)
+    setRequest(true);
 
     fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyAXlNUd-_iFiS1IigjkhHLNYUq2wkiqhec",
@@ -27,19 +30,20 @@ const PasswordChange = () => {
         }),
       }
     ).then((response) => {
-        setRequest(false)
-        if (response.ok) {
-          console.log("Email Sent");
-        } else {
-          response.json().then((data) => {
-            let errorMessage = "Authentication Failed!";
-            if (data && data.error && data.error.message) {
-              errorMessage = data.error.message;
-            }
-            alert(errorMessage);
-          });
-        }
-      });
+      setRequest(false);
+      if (response.ok) {
+        console.log("Email Sent");
+        history.replace("/login");
+      } else {
+        response.json().then((data) => {
+          let errorMessage = "Authentication Failed!";
+          if (data && data.error && data.error.message) {
+            errorMessage = data.error.message;
+          }
+          alert(errorMessage);
+        });
+      }
+    });
   };
 
   return (
@@ -48,9 +52,9 @@ const PasswordChange = () => {
         <h2>Forgot Password</h2>
         <div className={classes.control}>
           <label htmlFor="email">Email</label>
-          <input type="email" id="email" ref={emailsentInputRef} required/>
+          <input type="email" id="email" ref={emailsentInputRef} required />
         </div>
-        <div className={classes.actions}> 
+        <div className={classes.actions}>
           {!sendingRequest && <button>Send Link</button>}
           {sendingRequest && <button>Loading...</button>}
         </div>
