@@ -1,41 +1,48 @@
 .expenses {
-  margin: 1rem;
-  padding: 0.5rem;
-  background-color: dimgray;
+  margin: 0rem;
+  padding: 0.1rem;
+  background-color:white;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
+  border-radius: 10px; 
   text-align: center;
   color: white;
-  margin-right: 380px;
-  margin-left: 350px;
-  margin-bottom: 50px;
-}
+  /*margin-right: 400px;
+  margin-left: 400px;*/
+  margin-bottom: 10px; 
+  display: flex;
+} 
 .description {
   font-size: 1.5rem;
-  color: #f7e702;
+  color: black;
   text-align: left;
   display: flex;
+  margin-top: 15px;
+  font-weight: bold;
 }
 .category {
-  color: #eccf77;
-  margin: 0;
+  color: black;
+  margin-left: 30px;
+  margin-top: 23px;
   font-size: 1rem;
   text-align: left;
   display: flex;
+  font-weight: bold;
 }
 .price {
   font-weight: bold;
   font-size: 1.5rem;
-  display: flex;
-  margin-left: 520px;
+  color: black;
+  margin-left: 40px;
+  margin-top: 15px;
 }
 .buttons {
-  margin-left: 505px;
+  /*margin-left: 505px; */
   margin-top: 20px;
 }
 .buttons button {
   background-color: brown;
   color: white;
   border-color: brown;
-  margin-right: 10px;
+  margin-left:20px;
+  font-weight:bold ;
 }

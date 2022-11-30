@@ -50,6 +50,10 @@ const ExpenseList = (props) => {
     fetchDataHandler();
   }, [fetchDataHandler]);
 
+  const editlist = (id) => {
+    props.onClick(id);
+  };
+
   return (
     <ul className={classes["expenses-list"]}>
       {expenses.map((expense) => (
@@ -59,7 +63,8 @@ const ExpenseList = (props) => {
           description={expense.description}
           category={expense.category}
           amount={expense.amount}
-        />
+          onClick={(e) => editlist(expense.id, e)}
+        ></Expense>
       ))}
     </ul>
   );

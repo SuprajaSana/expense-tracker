@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import AuthContext from "../store/auth-context";
 import ExpenseForm from "../components/expenses/ExpenseForm";
@@ -11,7 +11,7 @@ const AddExpense = () => {
 
   async function addHandler(NewMovieObj) {
     const response = await fetch(
-      `https://expense-tracker-ade4f-default-rtdb.firebaseio.com/dailyexpenses.json`,
+      "https://expense-tracker-ade4f-default-rtdb.firebaseio.com/dailyexpenses.json",
       {
         method: "POST",
         body: JSON.stringify(NewMovieObj),
@@ -27,7 +27,6 @@ const AddExpense = () => {
   return (
     <div>
       <ExpenseForm onAdd={addHandler}></ExpenseForm>
-      <ExpenseList></ExpenseList>
     </div>
   );
 };

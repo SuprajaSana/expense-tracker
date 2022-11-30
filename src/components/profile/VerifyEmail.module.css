@@ -1,7 +1,8 @@
 .action {
   margin-top: 50px;
   display: flex;
-  margin-left: 618px;
+  margin-left: 680px;
+  text-align: center;
 }
 .action button {
   color: white;
@@ -13,7 +14,8 @@
 .control {
   margin-top: 30px;
   display: flex;
-  margin-left: 618px;
+  margin-left: 680px;
+  text-align: center;
 }
 .control button {
   color: white;

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
 import classes from "./Expense.module.css";
 
 const Expense = (props) => {
+  const [isEdit, setEdit] = useState(false);
+
   function deleteExpenseHandler(id) {
     const response = fetch(
       `https://expense-tracker-ade4f-default-rtdb.firebaseio.com/dailyexpenses/${id}.json`,
@@ -15,6 +17,10 @@ const Expense = (props) => {
     }
   }
 
+  const edit = (id) => {
+    props.onClick(id);
+  };
+
   return (
     <li className={classes.expenses}>
       <span className={classes.description}>{props.description}</span>
@@ -24,7 +30,7 @@ const Expense = (props) => {
         <button onClick={(e) => deleteExpenseHandler(props.id, e)}>
           DELETE
         </button>
-        <button>EDIT</button>
+        <button onClick={(e) => edit(props.id, e)}>EDIT</button>
       </div>
     </li>
   );
