@@ -1,20 +1,27 @@
-import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
+import { expensesActions } from "../../store/expenses";
 import classes from "./Expense.module.css";
 
 const Expense = (props) => {
-  const [isEdit, setEdit] = useState(false);
+  const email = useSelector((state) => state.auth.email);
 
-  function deleteExpenseHandler(id) {
+  const dispatch = useDispatch();
+
+  const newAmount = props.amount;
+
+  const email1 = email.replace("@", "");
+  const newEmail = email1.replace(".", "");
+
+  function deleteExpenseHandler(id, newAmount) {
     const response = fetch(
-      `https://expense-tracker-ade4f-default-rtdb.firebaseio.com/dailyexpenses/${id}.json`,
+      `https://expense-tracker-ade4f-default-rtdb.firebaseio.com/dailyexpenses${newEmail}/${id}.json`,
       {
         method: "DELETE",
       }
     );
-    if (response.ok) {
-      console.log("Expense successfully deleted");
-    }
+
+    dispatch(expensesActions.deleteAmount(newAmount));
   }
 
   const edit = (id) => {
@@ -25,9 +32,9 @@ const Expense = (props) => {
     <li className={classes.expenses}>
       <span className={classes.description}>{props.description}</span>
       <span className={classes.category}>{props.category}</span>
-      <span className={classes.price}>$ {props.amount}</span>
+      <span className={classes.price}>Rs. {props.amount}</span>
       <div className={classes.buttons}>
-        <button onClick={(e) => deleteExpenseHandler(props.id, e)}>
+        <button onClick={(e) => deleteExpenseHandler(props.id, newAmount)}>
           DELETE
         </button>
         <button onClick={(e) => edit(props.id, e)}>EDIT</button>

@@ -1,8 +1,10 @@
 import { useRef, useState, useContext } from "react";
-import AuthContext from "../../store/auth-context";
 import { useHistory, NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import classes from "./Login.module.css";
+import { authActions } from "../../store/auth";
+import AuthContext from "../../store/auth-context";
 
 const Login = () => {
   const emailInputRef = useRef("");
@@ -15,6 +17,7 @@ const Login = () => {
 
   const authCtx = useContext(AuthContext);
 
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const switchAuthModeHandler = () => {
@@ -66,8 +69,12 @@ const Login = () => {
             }
           })
           .then((data) => {
-            authCtx.login(data.idToken);
+            // authCtx.login(data.idToken);
             //authCtx.login(data.idToken);
+            console.log(data);
+            console.log(data.email);
+            //dispatch(authActions.login(data.idToken))
+            dispatch(authActions.login(data.email));
             history.replace("/welcome");
           })
           .catch((err) => {
@@ -116,7 +123,9 @@ const Login = () => {
             className={classes.toggle}
             onClick={switchAuthModeHandler}
           ></button>
-          <NavLink className={classes.password} to='/forgotpassword'>Forgot Password?</NavLink>
+          <NavLink className={classes.password} to="/forgotpassword">
+            Forgot Password?
+          </NavLink>
         </div>
         <div>
           <span>Don't have an account?</span>

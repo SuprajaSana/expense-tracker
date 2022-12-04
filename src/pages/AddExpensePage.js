@@ -1,20 +1,25 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
+import { useSelector } from "react-redux";
 
 import AuthContext from "../store/auth-context";
 import ExpenseForm from "../components/expenses/ExpenseForm";
-import ExpenseList from "../components/expenses/ExpenseList";
 
-const AddExpense = () => {
+const AddExpense = (props) => {
   const authCtx = useContext(AuthContext);
 
-  const token = authCtx.token;
+  const email = useSelector((state) => state.auth.email);
 
-  async function addHandler(NewMovieObj) {
+  //const token = authCtx.token;
+
+  const email1 = email.replace("@", "");
+  const newEmail = email1.replace(".", "");
+
+  async function addHandler(NewExpenseObj) {
     const response = await fetch(
-      "https://expense-tracker-ade4f-default-rtdb.firebaseio.com/dailyexpenses.json",
+      `https://expense-tracker-ade4f-default-rtdb.firebaseio.com/dailyexpenses${newEmail}.json`,
       {
         method: "POST",
-        body: JSON.stringify(NewMovieObj),
+        body: JSON.stringify(NewExpenseObj),
         headers: {
           "Content-Type": "application/json",
         },

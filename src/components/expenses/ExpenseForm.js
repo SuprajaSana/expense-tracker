@@ -1,10 +1,18 @@
-import { useRef, useContext, useState } from "react";
+import { useRef, useContext, useState, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 import ExpenseContext from "../../store/expense-context";
 import ExpenseList from "./ExpenseList";
-
 import classes from "./ExpenseForm.module.css";
+import { expensesActions } from "../../store/expenses";
+import TotalExpenses from "./TotalExpenses";
+import { authActions } from "../../store/auth";
 
 const ExpenseForm = (props) => {
+  const email = useSelector((state) => state.auth.email);
+  const showExpenses = useSelector((state) => state.auth.expensesIsVisible);
+  const dispatch = useDispatch();
+
   const descriptionRef = useRef("");
   const categoryRef = useRef("");
   const amountRef = useRef("");
@@ -18,6 +26,10 @@ const ExpenseForm = (props) => {
   const [newamount, setAmount] = useState();
   const [id, setId] = useState();
   const [update, setUpdate] = useState(false);
+  //const [showExpenses, setShowExpenses] = useState(false);
+
+  const email1 = email.replace("@", "");
+  const newEmail = email1.replace(".", "");
 
   function submitHandler(event) {
     event.preventDefault();
@@ -25,16 +37,18 @@ const ExpenseForm = (props) => {
       const expense = {
         description: descriptionRef.current.value,
         category: categoryRef.current.value,
-        amount: amountRef.current.value,
+        amount: +amountRef.current.value,
       };
       props.onAdd(expense);
+      dispatch(expensesActions.addAmount(expense.amount));
     } else {
       const expense = {
         description: newdescription,
         category: newcategory,
-        amount: newamount,
+        amount: +newamount,
       };
       props.onAdd(expense);
+      dispatch(expensesActions.addAmount(expense.amount));
     }
   }
 
@@ -42,7 +56,7 @@ const ExpenseForm = (props) => {
     setEdit(true);
     setId(id);
     const response = await fetch(
-      `https://expense-tracker-ade4f-default-rtdb.firebaseio.com/dailyexpenses/${id}.json`
+      `https://expense-tracker-ade4f-default-rtdb.firebaseio.com/dailyexpenses${newEmail}/${id}.json`
     );
 
     if (!response.ok) {
@@ -58,11 +72,12 @@ const ExpenseForm = (props) => {
     setAmount(data.amount);
 
     const deleteExpense = await fetch(
-      `https://expense-tracker-ade4f-default-rtdb.firebaseio.com/dailyexpenses/${id}.json`,
+      `https://expense-tracker-ade4f-default-rtdb.firebaseio.com/dailyexpenses${newEmail}/${id}.json`,
       {
         method: "DELETE",
       }
     );
+    dispatch(expensesActions.deleteAmount(data.amount));
   }
 
   const descriptionHandler = (event) => {
@@ -74,6 +89,39 @@ const ExpenseForm = (props) => {
   const amountHandler = (event) => {
     setAmount(event.target.value);
   };
+
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
+
+  const fetchExpenseHandler = useCallback(async () => {
+    setError(null);
+    dispatch(authActions.toggle());
+    try {
+      const response = await fetch(
+        `https://expense-tracker-ade4f-default-rtdb.firebaseio.com/dailyexpenses${newEmail}.json`
+      );
+
+      if (!response.ok) {
+        throw new Error("Something went wrong...retrying");
+      }
+
+      const data = await response.json();
+
+      const transformedData = [];
+
+      for (const key in data) {
+        transformedData.push({
+          id: key,
+          description: data[key].description,
+          category: data[key].category,
+          amount: data[key].amount,
+        });
+      }
+      setData(transformedData);
+    } catch (error) {
+      setError(error.message);
+    }
+  }, []);
 
   return (
     <div className={classes.auth}>
@@ -148,9 +196,19 @@ const ExpenseForm = (props) => {
           </div>
         </div>
       </form>
-      <div className={classes.expenselist}>
-        <ExpenseList onClick={editHandler}></ExpenseList>
+      <div className={classes.actions}>
+        <button onClick={fetchExpenseHandler}>Expenses</button>
       </div>
+      {showExpenses && (
+        <div>
+          <div>
+            <TotalExpenses></TotalExpenses>
+          </div>
+          <div className={classes.expenselist}>
+            <ExpenseList onClick={editHandler}></ExpenseList>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

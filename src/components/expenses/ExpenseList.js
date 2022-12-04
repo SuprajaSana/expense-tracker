@@ -1,17 +1,22 @@
 import React, { useContext, useState } from "react";
 import { useCallback, useEffect } from "react";
-import AuthContext from "../../store/auth-context";
+import { useSelector } from "react-redux";
 
 import ExpenseContext from "../../store/expense-context";
+import AuthContext from "../../store/auth-context";
 import Expense from "./Expense";
 import classes from "./ExpenseList.module.css";
 
 const ExpenseList = (props) => {
   //const expenseCtx=useContext(ExpenseContext)
+  const email = useSelector((state) => state.auth.email);
+
+  const email1 = email.replace("@", "");
+  const newEmail = email1.replace(".", "");
 
   const authCtx = useContext(AuthContext);
 
-  const token = authCtx.token;
+  //const token = authCtx.token;
 
   const [expenses, setExpenses] = useState([]);
   const [error, setError] = useState(null);
@@ -20,7 +25,7 @@ const ExpenseList = (props) => {
     setError(null);
     try {
       const response = await fetch(
-        `https://expense-tracker-ade4f-default-rtdb.firebaseio.com/dailyexpenses.json`
+        `https://expense-tracker-ade4f-default-rtdb.firebaseio.com/dailyexpenses${newEmail}.json`
       );
 
       if (!response.ok) {
@@ -39,7 +44,6 @@ const ExpenseList = (props) => {
           amount: data[key].amount,
         });
       }
-
       setExpenses(transformedData);
     } catch (error) {
       setError(error.message);

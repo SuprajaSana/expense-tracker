@@ -1,16 +1,22 @@
-import classes from "./VerifyEmail.module.css";
-import AuthContext from "../../store/auth-context";
 import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/auth";
+
+import classes from "./VerifyEmail.module.css";
+import AuthContext from "../../store/auth-context";
 
 const VerifyEmail = () => {
   const authCtx = useContext(AuthContext);
 
   const [emailVerify, setEmailVerify] = useState(false);
 
-  const token = authCtx.token;
+  //const token = authCtx.token;
+  const token = useSelector((state) => state.auth.token);
 
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const emailVerifyHandler = () => {
     setEmailVerify(true);
@@ -43,7 +49,8 @@ const VerifyEmail = () => {
   };
 
   const logoutHandler = () => {
-    authCtx.logout();
+    //authCtx.logout();
+    dispatch(authActions.logout());
     history.replace("/login");
   };
 

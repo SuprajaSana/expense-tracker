@@ -1,6 +1,7 @@
 import { useRef, useState, useContext } from "react";
-import AuthContext from "../../store/auth-context";
+import { useSelector } from "react-redux";
 
+import AuthContext from "../../store/auth-context";
 import classes from "./ProfileForm.module.css";
 
 const ProfileForm = () => {
@@ -14,7 +15,9 @@ const ProfileForm = () => {
 
   const authCtx = useContext(AuthContext);
 
-  const token = authCtx.token;
+  //const token = authCtx.token;
+
+  const token = useSelector((state) => state.auth.token);
 
   const submitProfileHnadler = (e) => {
     e.preventDefault();
