@@ -29,17 +29,19 @@ const Expense = (props) => {
   };
 
   return (
-    <li className={classes.expenses}>
-      <span className={classes.description}>{props.description}</span>
-      <span className={classes.category}>{props.category}</span>
-      <span className={classes.price}>Rs. {props.amount}</span>
-      <div className={classes.buttons}>
-        <button onClick={(e) => deleteExpenseHandler(props.id, newAmount)}>
-          DELETE
-        </button>
-        <button onClick={(e) => edit(props.id, e)}>EDIT</button>
-      </div>
-    </li>
+    <div>
+      <li className={classes.expenses}>
+        <span className={classes.description}>{props.description}</span>
+        <span className={classes.category}>{props.category}</span>
+        <span className={classes.price}>Rs. {props.amount}</span>
+        <div className={classes.buttons}>
+          <button onClick={(e) => deleteExpenseHandler(props.id, newAmount)}>
+            DELETE
+          </button>
+          <button onClick={(e) => edit(props.id, e)}>EDIT</button>
+        </div>
+      </li>
+    </div>
   );
 };
 

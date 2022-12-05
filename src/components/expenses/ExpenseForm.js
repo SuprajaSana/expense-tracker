@@ -7,10 +7,13 @@ import classes from "./ExpenseForm.module.css";
 import { expensesActions } from "../../store/expenses";
 import TotalExpenses from "./TotalExpenses";
 import { authActions } from "../../store/auth";
+import { themeActions } from "../../store/theme";
 
 const ExpenseForm = (props) => {
   const email = useSelector((state) => state.auth.email);
   const showExpenses = useSelector((state) => state.auth.expensesIsVisible);
+  const activePremium = useSelector(state => state.expenses.premium);
+  const changeTheme = useSelector((state) => state.theme.theme);
   const dispatch = useDispatch();
 
   const descriptionRef = useRef("");
@@ -123,11 +126,25 @@ const ExpenseForm = (props) => {
     }
   }, []);
 
+  const themeChangeHandler = () => {
+    dispatch(themeActions.toggle());
+  };
+
   return (
-    <div className={classes.auth}>
+    <div className={!changeTheme ? classes.auth : classes.darkmode}>
+      <div className={classes.theme}>
+        {!changeTheme && (
+          <button className={classes.dark} onClick={themeChangeHandler}>
+            Dark Theme
+          </button>
+        )}
+        {changeTheme && (
+          <button onClick={themeChangeHandler}>Light Theme</button>
+        )}
+      </div>
       <form onSubmit={submitHandler}>
         <div>
-          <h2>Daily Expenses</h2>
+          <h2>Expenses</h2>
           {!edit && (
             <div className={classes.control}>
               <input
@@ -200,14 +217,14 @@ const ExpenseForm = (props) => {
         <button onClick={fetchExpenseHandler}>Expenses</button>
       </div>
       {showExpenses && (
-        <div>
           <div>
-            <TotalExpenses></TotalExpenses>
+            <div>
+              <TotalExpenses></TotalExpenses>
+            </div>
+            <div className={classes.expenselist}>
+              <ExpenseList onClick={editHandler}></ExpenseList>
+            </div>
           </div>
-          <div className={classes.expenselist}>
-            <ExpenseList onClick={editHandler}></ExpenseList>
-          </div>
-        </div>
       )}
     </div>
   );

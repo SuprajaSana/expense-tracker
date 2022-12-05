@@ -6,6 +6,7 @@ import ExpenseContext from "../../store/expense-context";
 import AuthContext from "../../store/auth-context";
 import Expense from "./Expense";
 import classes from "./ExpenseList.module.css";
+import FileDownload from "./FileDownload";
 
 const ExpenseList = (props) => {
   //const expenseCtx=useContext(ExpenseContext)
@@ -59,18 +60,23 @@ const ExpenseList = (props) => {
   };
 
   return (
-    <ul className={classes["expenses-list"]}>
-      {expenses.map((expense) => (
-        <Expense
-          key={expense.id}
-          id={expense.id}
-          description={expense.description}
-          category={expense.category}
-          amount={expense.amount}
-          onClick={(e) => editlist(expense.id, e)}
-        ></Expense>
-      ))}
-    </ul>
+    <div>
+      <ul className={classes["expenses-list"]}>
+        {expenses.map((expense) => (
+          <Expense
+            key={expense.id}
+            id={expense.id}
+            description={expense.description}
+            category={expense.category}
+            amount={expense.amount}
+            onClick={(e) => editlist(expense.id, e)}
+          ></Expense>
+        ))}
+      </ul>
+      <div>
+        <FileDownload></FileDownload>
+      </div>
+    </div>
   );
 };
 export default ExpenseList;

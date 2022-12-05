@@ -10,7 +10,6 @@
   color: white;
   margin-top: 1rem;
 }
-
 .auth h1 {
   text-align: center;
   color: white;
@@ -39,12 +38,37 @@
   cursor: pointer;
   font: inherit;
   color: white;
-  background-color: rgb(52, 32, 32);
+  background-color: rgb(60, 46, 46);
   border: 1px solid rgb(52, 32, 32);
   border-radius: 4px;
   padding: 0.5rem 2.5rem;
   margin-bottom: 10px;
+  font-weight: bold;
 }
-.expenselist {
-  background-color: white;
+.theme {
+  margin-left: 80%;
+}
+.theme button {
+  font-weight: bold;
+  text-align: center;
+}
+.dark {
+  background-color: black;
+  color: white;
+}
+.darkmode {
+  margin: 3rem auto;
+  width: 95%;
+  max-width: 35rem;
+  border-radius: 6px;
+  background-color: rgb(63, 61, 61);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  text-align: center;
+  color: white;
+  margin-top: 1rem;
+}
+.darkmode h1 {
+  text-align: center;
+  color: white;
 }

@@ -1,5 +1,5 @@
 import { Redirect, Route } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import LogIn from "./pages/LoginPage";
@@ -21,9 +21,12 @@ function App() {
   const expenseAmount = useSelector((state) => state.expenses.quantity);
   const email = useSelector((state) => state.auth.email);
 
-  const email1 = email.replace("@", "");
-  const newEmail = email1.replace(".", "");
+  let newEmail;
 
+  if (email) {
+    const email1 = email.replace("@", "");
+    newEmail = email1.replace(".", "");
+  }
   const dispatch = useDispatch();
 
   useEffect(() => {
