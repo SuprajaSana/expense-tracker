@@ -30,7 +30,7 @@ const expensesSlice = createSlice({
     },
     replaceExpenses(state, action) {
       state.expenses = action.payload;
-      },
+    },
   },
 });
 

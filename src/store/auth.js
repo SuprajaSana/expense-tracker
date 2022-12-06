@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initToken = localStorage.getItem('token')
+const initToken = localStorage.getItem("token");
 const initEmail = localStorage.getItem("email");
 
 const initialAuthState = {

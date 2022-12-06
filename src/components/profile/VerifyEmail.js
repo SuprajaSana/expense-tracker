@@ -14,14 +14,13 @@ const VerifyEmail = () => {
 
   //const token = authCtx.token;
   const token = useSelector((state) => state.auth.token);
- 
+
   const history = useHistory();
   const dispatch = useDispatch();
 
   const emailVerifyHandler = () => {
     setEmailVerify(true);
-    console.log(token)
-
+    console.log(token);
 
     fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyAXlNUd-_iFiS1IigjkhHLNYUq2wkiqhec",

@@ -12,7 +12,7 @@ import { themeActions } from "../../store/theme";
 const ExpenseForm = (props) => {
   const email = useSelector((state) => state.auth.email);
   const showExpenses = useSelector((state) => state.auth.expensesIsVisible);
-  const activePremium = useSelector(state => state.expenses.premium);
+  const activePremium = useSelector((state) => state.expenses.premium);
   const changeTheme = useSelector((state) => state.theme.theme);
   const dispatch = useDispatch();
 
@@ -217,14 +217,14 @@ const ExpenseForm = (props) => {
         <button onClick={fetchExpenseHandler}>Expenses</button>
       </div>
       {showExpenses && (
+        <div>
           <div>
-            <div>
-              <TotalExpenses></TotalExpenses>
-            </div>
-            <div className={classes.expenselist}>
-              <ExpenseList onClick={editHandler}></ExpenseList>
-            </div>
+            <TotalExpenses></TotalExpenses>
           </div>
+          <div className={classes.expenselist}>
+            <ExpenseList onClick={editHandler}></ExpenseList>
+          </div>
+        </div>
       )}
     </div>
   );

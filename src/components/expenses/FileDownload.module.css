@@ -1,12 +1,12 @@
-.expensesfile{
-    color:white;
-    background-color: rgb(68, 59, 59);
-    font-weight: bold;
-    border-color:  rgb(68, 59, 59);
-    border-radius: 5px;
-    padding: 0.5rem;
+.expensesfile {
+  color: white;
+  background-color: rgb(68, 59, 59);
+  font-weight: bold;
+  border-color: rgb(68, 59, 59);
+  border-radius: 5px;
+  padding: 0.5rem;
 }
-.link{
-    text-decoration: none;
-    color: white;
+.link {
+  text-decoration: none;
+  color: white;
 }

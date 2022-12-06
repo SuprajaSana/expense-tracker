@@ -73,7 +73,7 @@ const Login = () => {
             //authCtx.login(data.idToken);
             console.log(data);
             console.log(data.email);
-            dispatch(authActions.loginToken(data.idToken))
+            dispatch(authActions.loginToken(data.idToken));
             dispatch(authActions.login(data.email));
             history.replace("/welcome");
           })
